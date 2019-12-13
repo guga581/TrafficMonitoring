@@ -13,5 +13,5 @@ server: $(SRC_DIR)/server_tcp.c
 	$(CC) -o $(DST_DIR)/server $(SRC_DIR)/server_tcp.c -lpthread
 
 clean:
-	rm $(LOG_DIR)/*.csv
-	rm $(DST_DIR)/*
+	rm -f $(LOG_DIR)/*
+	rm -f $(DST_DIR)/*

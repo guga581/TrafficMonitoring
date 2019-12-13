@@ -13,7 +13,7 @@
 
 #define PORTNUMBER 50005
 #define BUFSIZE 128*1024
-static const char ADDRESS[] = "10.1.1.80";
+char ADDRESS[];
 
 float bytesRecebidos;
 struct timeval now,now1,now2;
@@ -94,7 +94,7 @@ void *printar(void *socket_desc)
   return 0;
 }
 
-int main(){
+int main(int argc, char *argv[]){
    int i = 0;
    int serversocket,portaUser;
    struct sockaddr_in server_addr;
@@ -102,8 +102,8 @@ int main(){
    struct sockaddr_in server , client;
    sem_init(&semaforo, 0, 1); // inicializa semaforo com 1
    
-   
-   
+   if(argc==2)
+	strcat(ADDRESS,argv[1]);
 
    //Criacao do socket no servidor
    printf("Iniciando o servidor. \n");
@@ -128,8 +128,8 @@ int main(){
    //Numero da porta
    server_addr.sin_port   = htons(portaUser);
    
-   sprintf(url,"log/%d.csv",portaUser);
-   printf("%s",url);
+   sprintf(url,"../log/%d.csv",portaUser);
+//   printf("%s",url);
    //
    //memset(&(server_addr.sin_zero), '\0', sizeof(server_addr.sin_zero));
 
