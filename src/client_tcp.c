@@ -81,6 +81,11 @@ int main(int argc, char *argv[]){
 	portaUser = atoi(argv[2]);
 	segundosUser = atoi(argv[3]);
 	}
+   else
+   {
+	printf("Usage: ./client ip port seconds\n");
+	return -1;
+   }
 
    //Especificacao do endereco do servidor para efetuar conexao
    s.sin_family = AF_INET;

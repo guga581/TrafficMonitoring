@@ -105,6 +105,10 @@ int main(int argc, char *argv[]){
    if(argc==3){
 	strcat(ADDRESS,argv[1]);
 	portaUser = atoi(argv[2]);}
+   else{
+   	printf("Usage: ./server ip port\n");
+	return -1;
+	}
 	
 
    //Criacao do socket no servidor
