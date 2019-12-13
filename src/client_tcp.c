@@ -13,7 +13,7 @@
 
 #define MAXLINE 200
 #define BUFSIZE 128*1024
-static const char ADDRESS[] = "10.1.1.80";
+char ADDRESS[];
 
 //~ FILE *arq;
 //~ char url[]="LOG_AverageTraffic.txt";
@@ -54,7 +54,7 @@ float envioAtual=0;
   //~ return 0;
 //~ }
 
-int main(){
+int main(int argc, char *argv[]){
    
    int clientSock;
    int conn,num;
@@ -75,16 +75,23 @@ int main(){
    }
    
    memset(&s, 0, sizeof(s));
-   
+   int portaUser,segundosUser;
+   if(argc==4){
+        strcat(ADDRESS,argv[1]);
+	portaUser = atoi(argv[2]);
+	segundosUser = atoi(argv[3]);
+	}
+
    //Especificacao do endereco do servidor para efetuar conexao
    s.sin_family = AF_INET;
    s.sin_addr.s_addr = inet_addr(ADDRESS);
-   int portaUser,segundosUser;
+   s.sin_port = htons(portaUser);
+/*   int portaUser,segundosUser;
    printf("Em qual porta deseja se comunicar?\n");
    scanf("%d",&portaUser);
    
    s.sin_port = htons(portaUser);        
-   fflush(stdin);
+   fflush(stdin);*/
    
   
    
@@ -99,8 +106,8 @@ int main(){
 	read(clientSock, buffserver, sizeof(buffserver));
 	printf("Mensagem do servidor: %s\n",buffserver);	
 	
-    printf("Por quantos segundos deseja enviar dados?\n");
-	scanf("%d",&segundosUser);
+//    printf("Por quantos segundos deseja enviar dados?\n");
+//	scanf("%d",&segundosUser);
 	int *teste;
 	
 	//~ arq=fopen(url,"w");

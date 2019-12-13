@@ -102,8 +102,10 @@ int main(int argc, char *argv[]){
    struct sockaddr_in server , client;
    sem_init(&semaforo, 0, 1); // inicializa semaforo com 1
    
-   if(argc==2)
+   if(argc==3){
 	strcat(ADDRESS,argv[1]);
+	portaUser = atoi(argv[2]);}
+	
 
    //Criacao do socket no servidor
    printf("Iniciando o servidor. \n");
@@ -122,9 +124,9 @@ int main(int argc, char *argv[]){
 
    //Querendo especificar manualmente um endereco pode-se usar
    server_addr.sin_addr.s_addr   = inet_addr(ADDRESS);
-	printf("Que porta deseja escutar?\n");
-	scanf("%d" , &portaUser);
-	fflush(stdin);
+//	printf("Que porta deseja escutar?\n");
+//	scanf("%d" , &portaUser);
+//	fflush(stdin);
    //Numero da porta
    server_addr.sin_port   = htons(portaUser);
    
